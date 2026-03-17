@@ -10,18 +10,7 @@ package mx.itson.castor.analisisalgoritmos;
  */
 public class Ordenamientos {
 
-    public static void main(String[] args) {
         
-        int[] array = {1,7,5,6,4,3,4,5,6};
-        
-        selectionSort(array);
-        
-        for(int i : array){
-            System.out.println(i);
-        }
-    }
-    
-    
     public static int[] bubbleSort(int[] araay){ //La funcion recibe un araay al que ordenar, y retorna el mismo araay ordenado
         
         int n = araay.length; // n representa la cantidad de elementos dentro del araay
@@ -66,5 +55,28 @@ public class Ordenamientos {
         
         
         //Complejidad del método completo: O(n^2)
+    }
+    
+    
+    public static int[] insertionSort(int[] arr){ // 2 + 4n + 3n2 = O(n2)
+        
+        int n = arr.length; //Se toma la longitud del arreglo O(1)
+        
+        for (int i = 1; i < n; i++){ //Se recorre el arreglo desde la segunda posicion O(n)
+            
+            int key = arr[i]; //key representa el valor que se va a comparar y se ba a insertar en sus posicion correcta O(n)
+            
+            int j = i - 1; //j es el index anterior a key O(n)
+            
+            while (j >= 0 && arr[j] > key){ //Todos los elementos mayores que key se mueven una posicion a la derecha O(n2)
+                    
+                    arr[j + 1] = arr[j]; //Todo dentro del while loop tiene complejidad n2
+                    j = j - 1; // O(n2)
+                }
+            arr[j + 1] = key; //Se inserta key en la posicion correcta O(n)
+        }
+        
+        
+        return arr; // O(1)
     }
 }
