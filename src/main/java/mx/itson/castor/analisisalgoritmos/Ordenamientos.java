@@ -3,6 +3,7 @@
  */
 
 package mx.itson.castor.analisisalgoritmos;
+import java.util.Arrays;
 
 /**
  *
@@ -78,5 +79,61 @@ public class Ordenamientos {
         
         
         return arr; // O(1)
+    }
+    
+public static void quickSort(int[] arr, int inicio, int fin){ 
+
+    if (inicio < fin){  
+        //Verifica si hay más de un elemento en el arreglo O(1)
+
+        int pivoteIndice = particion(arr, inicio, fin);  
+        //Llama a partición (recorre el arreglo) O(n)
+
+        System.out.println("El índice del pivote es: " + pivoteIndice + ". El arreglo actualmente es: " + Arrays.toString(arr));  
+        //Sub arreglo Izquierdo
+        
+        System.out.println("Izquierda");  
+        //Impresión simple  O(1)
+
+        quickSort(arr, inicio, pivoteIndice - 1);  
+        //Llamada recursiva lado izquierdo O(log n) 
+
+        //Sub arreglo Derecho
+        System.out.println("Derecha");  
+        //Impresión simple  O(1)
+
+        quickSort(arr, pivoteIndice + 1, fin);  
+        //Llamada recursiva lado derecho O(log n) 
+    }     
+}
+
+public static int particion(int[] arr, int inicio, int fin){  
+    //Método que reorganiza el arreglo alrededor del pivote O(n)
+    int pivote = arr[fin];  
+    //Toma el último elemento como pivote O(1)
+    int i = inicio - 1;  
+    //Índice del menor elemento O(1)
+    for (int j = inicio; j < fin; j++){  
+        //Recorre el arreglo  O(n)
+        if (arr[j] < pivote){  
+            //Compara elemento con pivote O(1)
+            i++;  
+            //Incrementa índice O(1)
+            int temp = arr[i];  
+            //Guarda valor temporal O(1)
+            arr[i] = arr[j];  
+            //Intercambio O(1)
+            arr[j] = temp;  
+            //Intercambio O(1)
+        }
+    }
+    int temp = arr[i + 1];  
+    //Retorna índice del pivote O(1)Guarda valor temporal O(1)
+    arr[i + 1] = arr[fin];  
+    //Coloca pivote en su posición final O(1)
+    arr[fin] = temp;  
+    //Completa intercambio O(1)
+    return i + 1;  
+    //Retorna índice del pivote O(1)
     }
 }
