@@ -13,17 +13,21 @@ public class Main {
     public static void main(String[] args) {
         
         
-        int[] array = {24,12,10,50,4};
-        
-        int[] arrayOrdenado = Ordenamientos.selectionSort(array);
-        
+        int[] array = {5,3,7,6,8,4,9,6};
+
         System.out.println("Array desordenado");
         for(int i:array){
             System.out.print(i+" ");
         }
+        
+        int inicio = 0;
+        int fin = array.length - 1;
+        
+        Ordenamientos.quickSort(array, inicio, fin);
+
         System.out.println("\n");
         System.out.println("Array ordenado");
-        for(int i:arrayOrdenado){
+        for(int i:array){
             System.out.print(i+" ");
         }
     }
