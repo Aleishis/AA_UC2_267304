@@ -136,4 +136,75 @@ public static int particion(int[] arr, int inicio, int fin){
     return i + 1;  
     //Retorna índice del pivote O(1)
     }
+
+
+
+    public static void mergeSort(int[] arr, int izquierda, int derecha) {
+        
+        // O(n log n)
+        
+        // O(1) comparación simple
+        if (izquierda < derecha) {
+
+            // O(1) cálculo del punto medio
+            int medio = izquierda + (derecha - izquierda) / 2;
+
+            // Divide la mitad izquierda O(n/2)
+            mergeSort(arr, izquierda, medio);
+
+            // Divide la mitad derecha O(n/2)
+            mergeSort(arr, medio + 1, derecha);
+
+            // Combina las mitades ordenadas O(n)
+            merge(arr, izquierda, medio, derecha);
+        }
+    }
+
+    public static void merge(int[] arr, int izquierda, int medio, int derecha) {
+        // O(1)
+        int n1 = medio - izquierda + 1;
+        int n2 = derecha - medio;
+        // O(n) espacio auxiliar
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+        // Copiar datos al arreglo izquierdo O(n1)
+        for (int i = 0; i < n1; i++) {
+            L[i] = arr[izquierda + i];
+        }
+        // Copiar datos al arreglo derecho O(n2)
+        for (int j = 0; j < n2; j++) {
+            R[j] = arr[medio + 1 + j];
+        }
+        // O(1)
+        int i = 0, j = 0;
+        int k = izquierda;
+        // Mezcla ordenada O(n1 + n2) = O(n)
+        while (i < n1 && j < n2) {
+            // O(1) comparación
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+        // Copiar sobrantes de L O(n)
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        // Copiar sobrantes de R O(n)
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+
 }
+
+

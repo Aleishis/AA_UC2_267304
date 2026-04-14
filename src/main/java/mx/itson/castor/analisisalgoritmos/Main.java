@@ -4,6 +4,8 @@
  */
 package mx.itson.castor.analisisalgoritmos;
 
+import static mx.itson.castor.analisisalgoritmos.Ordenamientos.mergeSort;
+
 /**
  *
  * @author alelo
@@ -13,22 +15,20 @@ public class Main {
     public static void main(String[] args) {
         
         
-        int[] array = {5,3,7,6,8,4,9,6};
+        int[] arr = {5,3,7,6,8,4,9,6};
 
         System.out.println("Array desordenado");
-        for(int i:array){
+        for(int i:arr){
             System.out.print(i+" ");
         }
         
-        int inicio = 0;
-        int fin = array.length - 1;
-        
-        Ordenamientos.quickSort(array, inicio, fin);
+        // Llamada principal O(n log n)
+        mergeSort(arr, 0, arr.length - 1);
 
-        System.out.println("\n");
-        System.out.println("Array ordenado");
-        for(int i:array){
-            System.out.print(i+" ");
+        // Imprimir resultado -> O(n)
+        System.out.println("\nArray ordenado: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
     }
 }
